@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"gopkg.in/mgo.v2/bson"
 	"net/http"
 	"strings"
@@ -18,7 +17,8 @@ func UserRouter(w http.ResponseWriter, r *http.Request) {
 			userGetAll(w, r)
 			return
 		case http.MethodPost:
-			fmt.Fprint(w, "You made a GET request 🖖")
+			//fmt.Fprint(w, "You made a GET request 🖖")
+			usersPostOne(w, r)
 			return
 		default:
 			postError(w, http.StatusMethodNotAllowed)
@@ -31,16 +31,19 @@ func UserRouter(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//id := bson.ObjectIdHex(path)
+	id := bson.ObjectIdHex(path)
 
 	switch r.Method {
 	case http.MethodGet:
-		return
+		userGetOne(w, r, id)
 	case http.MethodPut:
+		usersPutOne(w, r, id)
 		return
 	case http.MethodPatch:
+		usersPatchOne(w, r, id)
 		return
 	case http.MethodDelete:
+		usersDeleteOne(w, r, id)
 		return
 	default:
 		postError(w, http.StatusMethodNotAllowed)
