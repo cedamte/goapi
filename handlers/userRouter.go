@@ -14,7 +14,8 @@ func UserRouter(w http.ResponseWriter, r *http.Request) {
 	if path == "/users" {
 		switch r.Method {
 		case http.MethodGet:
-			fmt.Fprint(w, "You made a GET request 🚀")
+			//fmt.Fprint(w, "You made a GET request 🚀")
+			userGetAll(w, r)
 			return
 		case http.MethodPost:
 			fmt.Fprint(w, "You made a GET request 🖖")
