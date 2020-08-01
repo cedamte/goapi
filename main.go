@@ -9,6 +9,8 @@ import (
 
 func main() {
 	http.HandleFunc("/", handlers.RootHandler)
+	http.HandleFunc("/users", handlers.UserRouter)
+	http.HandleFunc("/users/", handlers.UserRouter)
 	err := http.ListenAndServe("localhost:11111", nil)
 
 	if err != nil {

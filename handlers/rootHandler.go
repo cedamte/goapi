@@ -6,6 +6,7 @@ import (
 	"net/http"
 )
 
+// Root Handler for root Route
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" {
 		w.WriteHeader(http.StatusNotFound)
